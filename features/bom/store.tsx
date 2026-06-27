@@ -1,23 +1,23 @@
-"use client"
+"use client";
 import {
   createContext,
+  useCallback,
   useContext,
   useMemo,
   useState,
   type ReactNode,
 } from "react";
 import { type Component } from "./data";
-import { recentProjects } from "@/data/mock/projects";
+import { ProjectDefinition, recentProjects } from "@/data/mock/projects";
 import { mockInventory } from "@/data/mock/inventory";
 
-import { type ProjectSummary } from "@/lib/projects";
 // ...
 interface BomStore {
   items: Component[];
   total: number;
   itemCount: number;
   projectInfo: { name: string; tag: string } | null;
-  pushedHistory: ProjectSummary[];
+  pushedHistory: ProjectDefinition[];
   setQty: (id: string, qty: number) => void;
   remove: (id: string) => void;
   swap: (id: string, next: Omit<Component, "qty">) => void;
@@ -33,7 +33,7 @@ export function BomProvider({ children }: { children: ReactNode }) {
     name: string;
     tag: string;
   } | null>(null);
-  const [pushedHistory, setPushedHistory] = useState<ProjectSummary[]>([]);
+  const [pushedHistory, setPushedHistory] = useState<ProjectDefinition[]>([]);
 
   const loadProject = (projectName: string) => {
     const project = recentProjects.find((p) => p.name === projectName);
@@ -49,17 +49,20 @@ export function BomProvider({ children }: { children: ReactNode }) {
     setItems(components);
   };
 
-  const pushToCart = (projectName: string) => {
-    const project = recentProjects.find((p) => p.name === projectName);
-    if (!project) return;
-    
-    // Add to history if not already present
-    if (!pushedHistory.find(p => p.name === projectName)) {
-        setPushedHistory(prev => [...prev, project]);
-    }
-    
-    loadProject(projectName);
-  };
+  const pushToCart = useCallback(
+    (projectName: string) => {
+      const project = recentProjects.find((p) => p.name === projectName);
+      if (!project) return;
+
+      // Add to history if not already present
+      if (!pushedHistory.find((p) => p.name === projectName)) {
+        setPushedHistory((prev) => [...prev, project]);
+      }
+
+      loadProject(projectName);
+    },
+    [pushedHistory],
+  );
 
   const value = useMemo<BomStore>(() => {
     const total = items.reduce((s, i) => s + i.unitPrice * i.qty, 0);
@@ -80,9 +83,9 @@ export function BomProvider({ children }: { children: ReactNode }) {
           prev.map((i) => (i.id === id ? { ...next, qty: i.qty } : i)),
         ),
       loadProject,
-      pushToCart
+      pushToCart,
     };
-  }, [items, projectInfo, pushedHistory]);
+  }, [items, projectInfo, pushedHistory, pushToCart]);
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }
@@ -93,4 +96,3 @@ export function useBom() {
   if (!v) throw new Error("useBom outside provider");
   return v;
 }
-

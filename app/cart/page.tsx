@@ -2,14 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import {
-  Check,
-  ExternalLink,
-  Package,
-  Clock,
-  Zap,
-  ShoppingCart,
-} from "lucide-react";
+import { Check, ExternalLink, Package, Zap, ShoppingCart } from "lucide-react";
 import { useBom } from "../../features/bom/store";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -21,6 +14,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { categoryIcons } from "@/data/mock/projects";
+import { calculateTotalProjectPrice } from "@/lib/project-calculator";
 
 export default function CartScreen() {
   const { items, total, itemCount, projectInfo, pushedHistory, pushToCart } =
@@ -168,7 +162,7 @@ export default function CartScreen() {
                       <div>
                         <p className="text-sm font-medium">{p.name}</p>
                         <p className="text-xs text-muted-foreground">
-                          ₱{p.cost.toFixed(2)}
+                          ₱{calculateTotalProjectPrice(p).toFixed(2)}
                         </p>
                       </div>
                     </div>
