@@ -25,7 +25,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Image, ChevronDown } from "lucide-react";
 import { recentProjects, edgeColors } from "@/data/mock/projects";
-import { fetchComponents } from "@/lib/inventory/client";
+import { getAllComponents } from "@/lib/inventory/client";
 import { Component } from "@/lib/inventory/types";
 
 interface ComponentNode {
@@ -92,7 +92,7 @@ export default function FlowScreen() {
   const [inventory, setInventory] = useState<Component[]>([]);
 
   useEffect(() => {
-    fetchComponents()
+    getAllComponents()
       .then(setInventory)
       .catch((err) => console.error("Failed to load inventory for flow:", err));
   }, []);
@@ -209,6 +209,7 @@ export default function FlowScreen() {
                 <DropdownMenuItem
                   key={project.id}
                   onClick={() => setCurrentProject(project)}
+                  className="focus:bg-primary/20 focus:text-primary transition-colors"
                 >
                   {project.name}
                 </DropdownMenuItem>

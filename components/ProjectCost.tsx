@@ -5,7 +5,7 @@ import {
   calculateProjectCost,
   ProjectCartSummary,
 } from "@/lib/project-calculator";
-import { ProjectDefinition } from "@/data/mock/projects";
+import { ProjectDefinition } from "@/lib/project/types";
 
 export function ProjectCost({
   project,

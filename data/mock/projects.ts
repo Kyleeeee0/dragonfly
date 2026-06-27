@@ -1,12 +1,5 @@
+import { ConnectionType, ProjectDefinition } from "@/lib/project/types";
 import { Bot, Wifi, Network, Cpu, Zap } from "lucide-react";
-
-export type ProjectTag =
-  | "Robotics"
-  | "IoT"
-  | "Power"
-  | "Networking"
-  | "Mechatronics"
-  | "AI Generated";
 
 export const categoryIcons: Record<string, typeof Bot> = {
   Robotics: Bot,
@@ -16,40 +9,12 @@ export const categoryIcons: Record<string, typeof Bot> = {
   Power: Zap,
 };
 
-export type ConnectionType = "power" | "signal" | "logic" | "i2c";
-
 export const edgeColors: Record<ConnectionType, string> = {
   power: "#ef4444",
   signal: "#3b82f6",
   logic: "#8b5cf6",
   i2c: "#10b981",
 };
-
-export interface ProjectNode {
-  id: string;
-  position: { x: number; y: number };
-}
-
-// UPDATE: Added sourceHandle and targetHandle to strictly dictate routing
-export interface ProjectEdge {
-  id: string;
-  source: string;
-  target: string;
-  sourceHandle?: "top" | "bottom" | "left" | "right";
-  targetHandle?: "top" | "bottom" | "left" | "right";
-  label?: string;
-  type?: ConnectionType;
-}
-
-export interface ProjectDefinition {
-  id: string;
-  name: string;
-  time: string;
-  tag: ProjectTag;
-  nodes: ProjectNode[];
-  edges: ProjectEdge[];
-  substitutes?: Record<string, string[]>;
-}
 
 export const recentProjects: ProjectDefinition[] = [
   {

@@ -4,7 +4,7 @@ import { substitutesFor } from "./data";
 import { useBom } from "./store";
 import { useSheet } from "@/lib/sheet-context";
 import { useEffect, useMemo, useState } from "react";
-import { fetchComponents } from "@/lib/inventory/client";
+import { getAllComponents } from "@/lib/inventory/client";
 import { recentProjects } from "@/data/mock/projects";
 import { Component, StockStatus } from "@/lib/inventory/types";
 
@@ -23,7 +23,7 @@ export function SubstituteSheet({
   useEffect(() => {
     const loadInventory = async () => {
       try {
-        const components = await fetchComponents();
+        const components = await getAllComponents();
         setInventory(components);
       } catch (err) {
         console.error("Failed to load inventory for substitutes:", err);

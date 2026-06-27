@@ -7,10 +7,11 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { type ProjectTag, recentProjects } from "@/data/mock/projects";
-import { fetchComponents } from "@/lib/inventory/client";
+import { recentProjects } from "@/data/mock/projects";
+import { getAllComponents } from "@/lib/inventory/client";
 import { type ProjectCartSummary } from "@/lib/project-calculator";
 import { Component } from "@/lib/inventory/types";
+import { ProjectTag } from "@/lib/project/types";
 
 interface BomStore {
   items: Component[];
@@ -49,7 +50,7 @@ export function BomProvider({ children }: { children: ReactNode }) {
 
     setProjectInfo({ name: project.name, tag: project.tag });
 
-    const allInventory = await fetchComponents();
+    const allInventory = await getAllComponents();
     const components = project.nodes
       .map((node) => node.id)
       .map((id) => allInventory.find((item) => item.id === id))

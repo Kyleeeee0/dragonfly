@@ -1,6 +1,6 @@
-import { ProjectDefinition, type ProjectTag } from "@/data/mock/projects";
-import { fetchComponents } from "./inventory/client";
+import { getAllComponents } from "./inventory/client";
 import { Component } from "./inventory/types";
+import { ProjectDefinition, ProjectTag } from "./project/types";
 
 export interface ProjectCartSummary {
   id: string;
@@ -18,7 +18,7 @@ export const calculateProjectCost = async (
   project: ProjectDefinition,
 ): Promise<number> => {
   const itemIds = project.nodes.map((node) => node.id);
-  const components = await fetchComponents();
+  const components = await getAllComponents();
   const items = itemIds
     .map((id) => components.find((item) => item.id === id))
     .filter((item) => item !== undefined);

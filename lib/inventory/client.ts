@@ -2,13 +2,13 @@ import { Component } from "./types";
 
 const API_BASE = "/api/inventory";
 
-export async function fetchComponents(): Promise<Component[]> {
+export async function getAllComponents(): Promise<Component[]> {
   const res = await fetch(API_BASE);
   if (!res.ok) throw new Error("Failed to fetch components");
   return res.json();
 }
 
-export async function fetchComponent(id: string): Promise<Component> {
+export async function getComponent(id: string): Promise<Component> {
   const res = await fetch(`${API_BASE}/${id}`);
   if (!res.ok) throw new Error("Failed to fetch component");
   return res.json();
