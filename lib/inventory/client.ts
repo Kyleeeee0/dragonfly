@@ -1,6 +1,7 @@
 import { Component } from "./types";
 
-const API_BASE = "/api/v1/inventory";
+// const API_BASE = "/api/v1/inventory";
+const API_BASE = "/api/v2/inventory";
 
 export async function getAllComponents(): Promise<Component[]> {
   const res = await fetch(API_BASE);
