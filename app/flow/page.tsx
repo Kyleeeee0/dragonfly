@@ -5,8 +5,6 @@ import ReactFlow, {
   Controls,
   useNodesState,
   useEdgesState,
-  Handle,
-  Position,
 } from "reactflow";
 import "reactflow/dist/style.css";
 import {
@@ -23,96 +21,75 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { Image, ChevronDown } from "lucide-react";
-import { recentProjects, edgeColors } from "@/data/mock/projects";
+import { Image, ChevronDown, Loader2 } from "lucide-react";
+import {
+  getAllProjects,
+  getProjectNodes,
+  getProjectEdges,
+} from "@/lib/project/client";
+import { edgeColors } from "@/lib/project/constants";
 import { getAllComponents } from "@/lib/inventory/client";
 import { Component } from "@/lib/inventory/types";
-
-interface ComponentNode {
-  id: string;
-  label: string;
-  type: string;
-  specs: string;
-  position: { x: number; y: number };
-}
-
-const projects = recentProjects;
-
-const categoryColor: Record<string, string> = {
-  mcu: "bg-primary/20 text-primary ring-primary/40",
-  sensor: "bg-accent/20 text-accent ring-accent/40",
-  actuator: "bg-warning/20 text-warning ring-warning/40",
-  logic: "bg-white/10 text-foreground ring-white/20",
-  power: "bg-destructive/15 text-destructive ring-destructive/30",
-  passive: "bg-white/5 text-muted-foreground ring-white/10",
-};
-
-const CustomNode = ({
-  data,
-}: {
-  data: { component: ComponentNode; onClick: (c: ComponentNode) => void };
-}) => (
-  <button
-    onClick={() => data.onClick(data.component)}
-    className="flex w-48 relative flex-col items-center gap-1 rounded-2xl border bg-surface-elevated px-4 py-3 text-center border-white/10"
-  >
-    <Handle
-      id="top"
-      type="target"
-      position={Position.Top}
-      className="w-2 h-2 border-none bg-muted-foreground/50"
-    />
-
-    <Handle
-      id="bottom"
-      type="source"
-      position={Position.Bottom}
-      className="w-2 h-2 border-none bg-muted-foreground/50"
-    />
-
-    {/* NODE CONTENT */}
-    <span
-      className={`rounded-full px-2 py-0.5 text-[10px] font-medium ring-1 ${
-        categoryColor[data.component.type.toLowerCase()] ||
-        "bg-white/5 text-muted-foreground ring-white/10"
-      }`}
-    >
-      {data.component.type.toUpperCase()}
-    </span>
-    <p className="text-sm font-medium">{data.component.label}</p>
-    <p className="text-[10px] text-muted-foreground">{data.component.specs}</p>
-  </button>
-);
+import { CustomNode, type ComponentNode } from "@/features/visual-flow/CustomNode";
+import {
+  ProjectEdgeModel,
+  ProjectModel,
+  ProjectNodeModel,
+} from "@/lib/project/types";
 
 const nodeTypes = { custom: CustomNode };
 
 export default function FlowScreen() {
   const [selected, setSelected] = useState<ComponentNode | null>(null);
-  const [currentProject, setCurrentProject] = useState(projects[0]);
+  const [projects, setProjects] = useState<ProjectModel[]>([]);
+  const [currentProject, setCurrentProject] = useState<ProjectModel | null>(
+    null,
+  );
+  const [currentNodes, setCurrentNodes] = useState<ProjectNodeModel[]>([]);
+  const [currentEdges, setCurrentEdges] = useState<ProjectEdgeModel[]>([]);
   const [inventory, setInventory] = useState<Component[]>([]);
 
   useEffect(() => {
-    getAllComponents()
-      .then(setInventory)
-      .catch((err) => console.error("Failed to load inventory for flow:", err));
+    Promise.all([getAllProjects(), getAllComponents()])
+      .then(([projs, inv]) => {
+        setProjects(projs);
+        setInventory(inv);
+        if (projs.length > 0) {
+          setCurrentProject(projs[0]);
+        }
+      })
+      .catch((err) => console.error("Failed to load initial data:", err));
   }, []);
 
-  // 1. Compute nodes and edges once whenever currentProject changes
+  useEffect(() => {
+    if (!currentProject) return;
+
+    Promise.all([
+      getProjectNodes(currentProject.id),
+      getProjectEdges(currentProject.id),
+    ])
+      .then(([nodesData, edgesData]) => {
+        setCurrentNodes(nodesData);
+        setCurrentEdges(edgesData);
+      })
+      .catch((err) => console.error("Failed to load project details:", err));
+  }, [currentProject]);
+
   const { nodes: projectNodes, edges: projectEdges } = useMemo(() => {
-    const nodes = currentProject.nodes.map((node) => {
-      const comp = inventory.find((item) => item.id === node.id);
+    const nodes = currentNodes.map((node) => {
+      const comp = inventory.find((item) => item.id === node.componentId);
       return {
         id: node.id,
         label: comp?.name || "Unknown",
         type: comp?.category.toLowerCase() || "logic",
         specs: comp?.specs || "",
-        position: node.position,
+        position: { x: node.positionX, y: node.positionY },
       };
     });
 
-    const edges = currentProject.edges.map((edge) => ({
-      source: edge.source,
-      target: edge.target,
+    const edges = currentEdges.map((edge) => ({
+      source: edge.sourceId,
+      target: edge.targetId,
       sourceHandle: edge.sourceHandle || "bottom",
       targetHandle: edge.targetHandle || "top",
       label: edge.label ?? "",
@@ -120,40 +97,11 @@ export default function FlowScreen() {
     }));
 
     return { nodes, edges };
-  }, [currentProject, inventory]);
+  }, [currentNodes, currentEdges, inventory]);
 
-  // 2. Initialize React Flow states with the computed values
+  const [nodes, setNodes, onNodesChange] = useNodesState([]);
+  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
 
-  // 2. Initialize React Flow states with the computed values
-  const [nodes, setNodes, onNodesChange] = useNodesState(
-    projectNodes.map((node) => ({
-      id: node.id,
-      type: "custom",
-      data: { component: node, onClick: setSelected },
-      position: node.position,
-    })),
-  );
-
-  const [edges, setEdges, onEdgesChange] = useEdgesState(
-    projectEdges.map((edge, i) => ({
-      id: `e${edge.source}-${edge.target}-${i}`,
-      source: edge.source,
-      target: edge.target,
-      sourceHandle: edge.sourceHandle,
-      targetHandle: edge.targetHandle,
-      label: edge.label,
-      animated: true,
-      type: "smoothstep",
-      style: {
-        stroke: edgeColors[edge.type as keyof typeof edgeColors] || "#a1a1aa",
-        strokeWidth: 2,
-      },
-      labelBgStyle: { fill: "transparent" },
-      labelStyle: { fill: "#a1a1aa", fontSize: 10, fontWeight: 500 },
-    })),
-  );
-
-  // 3. Keep the flow updated when the project changes
   useEffect(() => {
     setNodes(
       projectNodes.map((node) => ({
@@ -182,6 +130,14 @@ export default function FlowScreen() {
       })),
     );
   }, [projectNodes, projectEdges, setNodes, setEdges, setSelected]);
+
+  if (!currentProject) {
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col h-screen">

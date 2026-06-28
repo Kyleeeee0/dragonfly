@@ -5,7 +5,7 @@ import {
   calculateProjectCost,
   ProjectCartSummary,
 } from "@/lib/project-calculator";
-import { ProjectDefinition } from "@/lib/project/types";
+import { ProjectDefinition, ProjectModel } from "@/lib/project/types";
 
 export function ProjectCost({
   project,
@@ -14,18 +14,17 @@ export function ProjectCost({
   project: ProjectDefinition | ProjectModel | ProjectCartSummary;
   className?: string;
 }) {
-  const [cost, setCost] = useState<number | null>(null);
+  const [calculatedCost, setCalculatedCost] = useState<number | null>(null);
 
   useEffect(() => {
-    if ("totalPrice" in project) {
-      setCost(project.totalPrice);
-      return;
-    } else {
-      calculateProjectCost(project)
-        .then(setCost)
-        .catch(() => setCost(0));
-    }
+    if ("totalPrice" in project) return;
+
+    calculateProjectCost(project)
+      .then(setCalculatedCost)
+      .catch(() => setCalculatedCost(0));
   }, [project]);
+
+  const cost = "totalPrice" in project ? project.totalPrice : calculatedCost;
 
   return (
     <span className={className}>
