@@ -38,6 +38,7 @@ export function ComponentCard({
   onFindSubstitute: (c: Component) => void;
 }) {
   const { setQty } = useBom();
+  console.log(c.stock);
   const isOut = c.stock === StockStatus.OUT;
   const [open, setOpen] = useState(false);
 

@@ -1,0 +1,225 @@
+[
+  {
+    "id": "proj_01_e1",
+    "projectId": "proj_01",
+    "sourceId": "proj_01_comp_pwr_01",
+    "targetId": "proj_01_comp_act_01",
+    "sourceHandle": "bottom",
+    "targetHandle": "top",
+    "label": "7.4V VMOT",
+    "type": "power"
+  },
+  {
+    "id": "proj_01_e2",
+    "projectId": "proj_01",
+    "sourceId": "proj_01_comp_pwr_01",
+    "targetId": "proj_01_comp_mcu_01",
+    "sourceHandle": "bottom",
+    "targetHandle": "top",
+    "label": "7.4V VIN",
+    "type": "power"
+  },
+  {
+    "id": "proj_01_e3",
+    "projectId": "proj_01",
+    "sourceId": "proj_01_comp_mcu_01",
+    "targetId": "proj_01_comp_sns_01",
+    "sourceHandle": "bottom",
+    "targetHandle": "top",
+    "label": "5V VCC",
+    "type": "power"
+  },
+  {
+    "id": "proj_01_e5",
+    "projectId": "proj_01",
+    "sourceId": "proj_01_comp_sns_01",
+    "targetId": "proj_01_comp_mcu_01",
+    "sourceHandle": "bottom",
+    "targetHandle": "top",
+    "label": "Sensor Data",
+    "type": "signal"
+  },
+  {
+    "id": "proj_01_e6",
+    "projectId": "proj_01",
+    "sourceId": "proj_01_comp_mcu_01",
+    "targetId": "proj_01_comp_act_01",
+    "sourceHandle": "bottom",
+    "targetHandle": "top",
+    "label": "PWM / DIR",
+    "type": "signal"
+  },
+  {
+    "id": "proj_01_e7",
+    "projectId": "proj_01",
+    "sourceId": "proj_01_comp_act_01",
+    "targetId": "proj_01_comp_act_02",
+    "sourceHandle": "bottom",
+    "targetHandle": "top",
+    "label": "Drive Current",
+    "type": "power"
+  },
+  {
+    "id": "proj_01_e_nand_in1",
+    "projectId": "proj_01",
+    "sourceId": "proj_01_comp_sns_01",
+    "targetId": "proj_01_comp_log_01",
+    "sourceHandle": "bottom",
+    "targetHandle": "top",
+    "label": "Line Lost",
+    "type": "logic"
+  },
+  {
+    "id": "proj_01_e_nand_out",
+    "projectId": "proj_01",
+    "sourceId": "proj_01_comp_log_01",
+    "targetId": "proj_01_comp_act_04",
+    "sourceHandle": "bottom",
+    "targetHandle": "top",
+    "label": "Buzzer",
+    "type": "signal"
+  },
+
+  {
+    "id": "proj_02_e9",
+    "projectId": "proj_02",
+    "sourceId": "proj_02_comp_pwr_02",
+    "targetId": "proj_02_comp_mcu_02",
+    "sourceHandle": "bottom",
+    "targetHandle": "left",
+    "label": "Battery",
+    "type": "power"
+  },
+  {
+    "id": "proj_02_e12",
+    "projectId": "proj_02",
+    "sourceId": "proj_02_comp_sns_02",
+    "targetId": "proj_02_comp_mcu_02",
+    "sourceHandle": "bottom",
+    "targetHandle": "right",
+    "label": "I2C Data",
+    "type": "i2c"
+  },
+  {
+    "id": "proj_02_e13",
+    "projectId": "proj_02",
+    "sourceId": "proj_02_comp_mcu_02",
+    "targetId": "proj_02_comp_act_03",
+    "sourceHandle": "bottom",
+    "targetHandle": "top",
+    "label": "Display Data",
+    "type": "i2c"
+  },
+
+  {
+    "id": "proj_03_e_pwr_sns",
+    "projectId": "proj_03",
+    "sourceId": "proj_03_comp_pwr_04",
+    "targetId": "proj_03_comp_sns_03",
+    "sourceHandle": "right",
+    "targetHandle": "left",
+    "label": "9V VCC",
+    "type": "power"
+  },
+  {
+    "id": "proj_03_e_in",
+    "projectId": "proj_03",
+    "sourceId": "proj_03_comp_sns_03",
+    "targetId": "proj_03_comp_log_02",
+    "sourceHandle": "bottom",
+    "targetHandle": "top",
+    "label": "Trigger",
+    "type": "signal"
+  },
+  {
+    "id": "proj_03_e_pwr_log",
+    "projectId": "proj_03",
+    "sourceId": "proj_03_comp_pwr_04",
+    "targetId": "proj_03_comp_log_02",
+    "sourceHandle": "bottom",
+    "targetHandle": "left",
+    "label": "9V VCC",
+    "type": "power"
+  },
+  {
+    "id": "proj_03_e_rc1",
+    "projectId": "proj_03",
+    "sourceId": "proj_03_comp_pas_01",
+    "targetId": "proj_03_comp_log_02",
+    "sourceHandle": "bottom",
+    "targetHandle": "right",
+    "label": "Timing R",
+    "type": "logic"
+  },
+  {
+    "id": "proj_03_e_rc2",
+    "projectId": "proj_03",
+    "sourceId": "proj_03_comp_pas_02",
+    "targetId": "proj_03_comp_log_02",
+    "sourceHandle": "bottom",
+    "targetHandle": "right",
+    "label": "Timing C",
+    "type": "logic"
+  },
+  {
+    "id": "proj_03_e_out",
+    "projectId": "proj_03",
+    "sourceId": "proj_03_comp_log_02",
+    "targetId": "proj_03_comp_act_04",
+    "sourceHandle": "bottom",
+    "targetHandle": "top",
+    "label": "Alarm Signal",
+    "type": "signal"
+  },
+
+  {
+    "id": "proj_04_e_trans",
+    "projectId": "proj_04",
+    "sourceId": "proj_04_comp_pwr_trans",
+    "targetId": "proj_04_comp_pwr_rect",
+    "sourceHandle": "bottom",
+    "targetHandle": "top",
+    "label": "12V AC",
+    "type": "power"
+  },
+  {
+    "id": "proj_04_e_rect",
+    "projectId": "proj_04",
+    "sourceId": "proj_04_comp_pwr_rect",
+    "targetId": "proj_04_comp_pwr_03",
+    "sourceHandle": "bottom",
+    "targetHandle": "top",
+    "label": "DC Bus",
+    "type": "power"
+  },
+  {
+    "id": "proj_04_e_relay",
+    "projectId": "proj_04",
+    "sourceId": "proj_04_comp_pwr_03",
+    "targetId": "proj_04_comp_act_05",
+    "sourceHandle": "bottom",
+    "targetHandle": "top",
+    "label": "Cutoff",
+    "type": "signal"
+  },
+  {
+    "id": "proj_04_e_zener",
+    "projectId": "proj_04",
+    "sourceId": "proj_04_comp_log_zener",
+    "targetId": "proj_04_comp_pwr_03",
+    "sourceHandle": "bottom",
+    "targetHandle": "right",
+    "label": "V-Ref",
+    "type": "logic"
+  },
+  {
+    "id": "proj_04_e_led",
+    "projectId": "proj_04",
+    "sourceId": "proj_04_comp_act_05",
+    "targetId": "proj_04_comp_act_led",
+    "sourceHandle": "right",
+    "targetHandle": "left",
+    "label": "Full Status",
+    "type": "signal"
+  }
+]

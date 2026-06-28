@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { GoogleGenAI } from "@google/genai";
 import { BomExtractionSchema } from "@/lib/schemas/bomSchema";
 import { resolveComponentPricing } from "@/lib/pricing";
+import { StockStatus } from "@/lib/inventory/types";
 
 // Initialize Gen AI SDK
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
@@ -13,7 +14,10 @@ export async function POST(req: Request) {
     const image = formData.get("image") as File;
 
     if (!prompt && !image) {
-      return NextResponse.json({ error: "Missing prompt or image" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Missing prompt or image" },
+        { status: 400 },
+      );
     }
 
     // 1. Prepare inputs for Gemini
@@ -51,15 +55,19 @@ CRITICAL INSTRUCTIONS:
     // Parse the structured JSON response
     const extraction = JSON.parse(response.text || "{}");
     const extractedItems = extraction.items || [];
-    
+
     // 3. Pricing Engine Logic
     const itemsWithPricing = await Promise.all(
       extractedItems.map(async (item: any, index: number) => {
         // Run real web search / scraping
-        const storeOptions = await resolveComponentPricing(item.name, item.partNumber);
-        
+        const storeOptions = await resolveComponentPricing(
+          item.name,
+          item.partNumber,
+        );
+
         // Find the cheapest to set as default
-        const cheapestOption = storeOptions.find(s => s.isCheapest) || storeOptions[0];
+        const cheapestOption =
+          storeOptions.find((s) => s.isCheapest) || storeOptions[0];
 
         return {
           id: `c-gen-${Date.now()}-${index}`,
@@ -67,9 +75,11 @@ CRITICAL INSTRUCTIONS:
           storeOptions,
           // Hydrate the default frontend expectations based on cheapest option
           unitPrice: cheapestOption ? cheapestOption.price : 0,
-          stock: cheapestOption?.inStock ? "in-stock" : "out",
+          stock: cheapestOption?.inStock
+            ? StockStatus.IN_STOCK
+            : StockStatus.OUT,
         };
-      })
+      }),
     );
 
     // 4. Return the unified multi-store payload
@@ -77,9 +87,11 @@ CRITICAL INSTRUCTIONS:
       items: itemsWithPricing,
       alerts: extraction.alerts || [],
     });
-
   } catch (error) {
     console.error("BOM Generation Error:", error);
-    return NextResponse.json({ error: "Failed to generate BOM" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to generate BOM" },
+      { status: 500 },
+    );
   }
 }

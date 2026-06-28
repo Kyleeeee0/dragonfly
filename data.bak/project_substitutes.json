@@ -1,0 +1,134 @@
+[
+  {
+    "id": "sub_proj_01_sns_01_alt1",
+    "projectId": "proj_01",
+    "originalComponentId": "comp_sns_01",
+    "substituteComponentId": "comp_sns_01_alt1"
+  },
+  {
+    "id": "sub_proj_01_sns_01_alt2",
+    "projectId": "proj_01",
+    "originalComponentId": "comp_sns_01",
+    "substituteComponentId": "comp_sns_01_alt2"
+  },
+  {
+    "id": "sub_proj_01_sns_01_alt3",
+    "projectId": "proj_01",
+    "originalComponentId": "comp_sns_01",
+    "substituteComponentId": "comp_sns_01_alt3"
+  },
+
+  {
+    "id": "sub_proj_01_log_01_alt1",
+    "projectId": "proj_01",
+    "originalComponentId": "comp_log_01",
+    "substituteComponentId": "comp_log_01_alt1"
+  },
+  {
+    "id": "sub_proj_01_log_01_alt2",
+    "projectId": "proj_01",
+    "originalComponentId": "comp_log_01",
+    "substituteComponentId": "comp_log_01_alt2"
+  },
+  {
+    "id": "sub_proj_01_log_01_alt3",
+    "projectId": "proj_01",
+    "originalComponentId": "comp_log_01",
+    "substituteComponentId": "comp_log_01_alt3"
+  },
+
+  {
+    "id": "sub_proj_01_mcu_01_alt1",
+    "projectId": "proj_01",
+    "originalComponentId": "comp_mcu_01",
+    "substituteComponentId": "comp_mcu_01_alt1"
+  },
+  {
+    "id": "sub_proj_01_mcu_01_alt2",
+    "projectId": "proj_01",
+    "originalComponentId": "comp_mcu_01",
+    "substituteComponentId": "comp_mcu_01_alt2"
+  },
+  {
+    "id": "sub_proj_01_mcu_01_alt3",
+    "projectId": "proj_01",
+    "originalComponentId": "comp_mcu_01",
+    "substituteComponentId": "comp_mcu_01_alt3"
+  },
+
+  {
+    "id": "sub_proj_01_act_01_alt1",
+    "projectId": "proj_01",
+    "originalComponentId": "comp_act_01",
+    "substituteComponentId": "comp_act_01_alt1"
+  },
+  {
+    "id": "sub_proj_01_act_01_alt2",
+    "projectId": "proj_01",
+    "originalComponentId": "comp_act_01",
+    "substituteComponentId": "comp_act_01_alt2"
+  },
+  {
+    "id": "sub_proj_01_act_01_alt3",
+    "projectId": "proj_01",
+    "originalComponentId": "comp_act_01",
+    "substituteComponentId": "comp_act_01_alt3"
+  },
+
+  {
+    "id": "sub_proj_02_sns_02_alt1",
+    "projectId": "proj_02",
+    "originalComponentId": "comp_sns_02",
+    "substituteComponentId": "comp_sns_02_alt1"
+  },
+  {
+    "id": "sub_proj_02_sns_02_alt2",
+    "projectId": "proj_02",
+    "originalComponentId": "comp_sns_02",
+    "substituteComponentId": "comp_sns_02_alt2"
+  },
+  {
+    "id": "sub_proj_02_sns_02_alt3",
+    "projectId": "proj_02",
+    "originalComponentId": "comp_sns_02",
+    "substituteComponentId": "comp_sns_02_alt3"
+  },
+
+  {
+    "id": "sub_proj_02_mcu_02_alt1",
+    "projectId": "proj_02",
+    "originalComponentId": "comp_mcu_02",
+    "substituteComponentId": "comp_mcu_02_alt1"
+  },
+  {
+    "id": "sub_proj_02_mcu_02_alt2",
+    "projectId": "proj_02",
+    "originalComponentId": "comp_mcu_02",
+    "substituteComponentId": "comp_mcu_02_alt2"
+  },
+  {
+    "id": "sub_proj_02_mcu_02_alt3",
+    "projectId": "proj_02",
+    "originalComponentId": "comp_mcu_02",
+    "substituteComponentId": "comp_mcu_02_alt3"
+  },
+
+  {
+    "id": "sub_proj_03_sns_03_alt1",
+    "projectId": "proj_03",
+    "originalComponentId": "comp_sns_03",
+    "substituteComponentId": "comp_sns_03_alt1"
+  },
+  {
+    "id": "sub_proj_03_sns_03_alt2",
+    "projectId": "proj_03",
+    "originalComponentId": "comp_sns_03",
+    "substituteComponentId": "comp_sns_03_alt2"
+  },
+  {
+    "id": "sub_proj_03_sns_03_alt3",
+    "projectId": "proj_03",
+    "originalComponentId": "comp_sns_03",
+    "substituteComponentId": "comp_sns_03_alt3"
+  }
+]

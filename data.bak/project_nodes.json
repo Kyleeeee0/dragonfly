@@ -1,0 +1,166 @@
+[
+  {
+    "id": "proj_01_comp_pwr_01",
+    "projectId": "proj_01",
+    "componentId": "comp_pwr_01",
+    "positionX": 250,
+    "positionY": 0
+  },
+  {
+    "id": "proj_01_comp_mcu_01",
+    "projectId": "proj_01",
+    "componentId": "comp_mcu_01",
+    "positionX": 250,
+    "positionY": 150
+  },
+  {
+    "id": "proj_01_comp_sns_01",
+    "projectId": "proj_01",
+    "componentId": "comp_sns_01",
+    "positionX": 550,
+    "positionY": 150
+  },
+  {
+    "id": "proj_01_comp_act_01",
+    "projectId": "proj_01",
+    "componentId": "comp_act_01",
+    "positionX": -50,
+    "positionY": 150
+  },
+  {
+    "id": "proj_01_comp_log_01",
+    "projectId": "proj_01",
+    "componentId": "comp_log_01",
+    "positionX": 550,
+    "positionY": 300
+  },
+  {
+    "id": "proj_01_comp_act_02",
+    "projectId": "proj_01",
+    "componentId": "comp_act_02",
+    "positionX": -50,
+    "positionY": 300
+  },
+  {
+    "id": "proj_01_comp_act_04",
+    "projectId": "proj_01",
+    "componentId": "comp_act_04",
+    "positionX": 550,
+    "positionY": 450
+  },
+
+  {
+    "id": "proj_02_comp_pwr_02",
+    "projectId": "proj_02",
+    "componentId": "comp_pwr_02",
+    "positionX": 50,
+    "positionY": 0
+  },
+  {
+    "id": "proj_02_comp_sns_02",
+    "projectId": "proj_02",
+    "componentId": "comp_sns_02",
+    "positionX": 550,
+    "positionY": 0
+  },
+  {
+    "id": "proj_02_comp_mcu_02",
+    "projectId": "proj_02",
+    "componentId": "comp_mcu_02",
+    "positionX": 300,
+    "positionY": 150
+  },
+  {
+    "id": "proj_02_comp_act_03",
+    "projectId": "proj_02",
+    "componentId": "comp_act_03",
+    "positionX": 300,
+    "positionY": 300
+  },
+
+  {
+    "id": "proj_03_comp_pwr_04",
+    "projectId": "proj_03",
+    "componentId": "comp_pwr_04",
+    "positionX": 0,
+    "positionY": 0
+  },
+  {
+    "id": "proj_03_comp_sns_03",
+    "projectId": "proj_03",
+    "componentId": "comp_sns_03",
+    "positionX": 250,
+    "positionY": 0
+  },
+  {
+    "id": "proj_03_comp_pas_01",
+    "projectId": "proj_03",
+    "componentId": "comp_pas_01",
+    "positionX": 550,
+    "positionY": 0
+  },
+  {
+    "id": "proj_03_comp_pas_02",
+    "projectId": "proj_03",
+    "componentId": "comp_pas_02",
+    "positionX": 800,
+    "positionY": 0
+  },
+  {
+    "id": "proj_03_comp_log_02",
+    "projectId": "proj_03",
+    "componentId": "comp_log_02",
+    "positionX": 250,
+    "positionY": 150
+  },
+  {
+    "id": "proj_03_comp_act_04",
+    "projectId": "proj_03",
+    "componentId": "comp_act_04",
+    "positionX": 250,
+    "positionY": 300
+  },
+
+  {
+    "id": "proj_04_comp_pwr_trans",
+    "projectId": "proj_04",
+    "componentId": "comp_pwr_trans",
+    "positionX": 250,
+    "positionY": 0
+  },
+  {
+    "id": "proj_04_comp_pwr_rect",
+    "projectId": "proj_04",
+    "componentId": "comp_pwr_rect",
+    "positionX": 250,
+    "positionY": 150
+  },
+  {
+    "id": "proj_04_comp_pwr_03",
+    "projectId": "proj_04",
+    "componentId": "comp_pwr_03",
+    "positionX": 250,
+    "positionY": 300
+  },
+  {
+    "id": "proj_04_comp_act_05",
+    "projectId": "proj_04",
+    "componentId": "comp_act_05",
+    "positionX": 250,
+    "positionY": 450
+  },
+  {
+    "id": "proj_04_comp_log_zener",
+    "projectId": "proj_04",
+    "componentId": "comp_log_zener",
+    "positionX": 550,
+    "positionY": 150
+  },
+  {
+    "id": "proj_04_comp_act_led",
+    "projectId": "proj_04",
+    "componentId": "comp_act_led",
+    "positionX": 550,
+    "positionY": 450
+  }
+]
