@@ -77,6 +77,23 @@ export async function updateProjectEdge(edgeId: string, updated: Partial<Project
   return res.json();
 }
 
+export async function createProjectEdge(edge: ProjectEdgeModel): Promise<ProjectEdgeModel> {
+  const res = await fetch(`${API_BASE}/edges`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(edge),
+  });
+  if (!res.ok) throw new Error("Failed to create project edge");
+  return res.json();
+}
+
+export async function deleteProjectEdge(edgeId: string): Promise<void> {
+  const res = await fetch(`${API_BASE}/edges/${edgeId}`, {
+    method: "DELETE",
+  });
+  if (!res.ok) throw new Error("Failed to delete project edge");
+}
+
 export async function getProjectSubstitutes(projectId: string): Promise<ProjectSubstituteModel[]> {
   const res = await fetch(`${API_BASE}/${projectId}/substitutes`);
   if (!res.ok) throw new Error("Failed to fetch project substitutes");
