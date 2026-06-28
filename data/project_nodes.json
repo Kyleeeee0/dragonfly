@@ -3,36 +3,36 @@
     "id": "proj_01_comp_pwr_01",
     "projectId": "proj_01",
     "componentId": "comp_pwr_01",
-    "positionX": 250,
-    "positionY": 0
+    "positionX": 286,
+    "positionY": 380
   },
   {
     "id": "proj_01_comp_mcu_01",
     "projectId": "proj_01",
     "componentId": "comp_mcu_01",
-    "positionX": 250,
-    "positionY": 150
+    "positionX": 206,
+    "positionY": 64
   },
   {
     "id": "proj_01_comp_sns_01",
     "projectId": "proj_01",
     "componentId": "comp_sns_01",
-    "positionX": 550,
-    "positionY": 150
+    "positionX": 326,
+    "positionY": -64
   },
   {
     "id": "proj_01_comp_act_01",
     "projectId": "proj_01",
     "componentId": "comp_act_01",
     "positionX": -50,
-    "positionY": 150
+    "positionY": 36
   },
   {
     "id": "proj_01_comp_log_01",
     "projectId": "proj_01",
     "componentId": "comp_log_01",
-    "positionX": 550,
-    "positionY": 300
+    "positionX": 462,
+    "positionY": 158
   },
   {
     "id": "proj_01_comp_act_02",
@@ -48,7 +48,6 @@
     "positionX": 550,
     "positionY": 450
   },
-
   {
     "id": "proj_02_comp_pwr_02",
     "projectId": "proj_02",
@@ -77,7 +76,6 @@
     "positionX": 300,
     "positionY": 300
   },
-
   {
     "id": "proj_03_comp_pwr_04",
     "projectId": "proj_03",
@@ -120,7 +118,6 @@
     "positionX": 250,
     "positionY": 300
   },
-
   {
     "id": "proj_04_comp_pwr_trans",
     "projectId": "proj_04",
